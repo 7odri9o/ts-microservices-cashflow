@@ -17,6 +17,9 @@ dependencies:
   '@prisma/client':
     specifier: ^4.15.0
     version: 4.15.0(prisma@4.15.0)
+  fast-safe-stringify:
+    specifier: ^2.1.1
+    version: 2.1.1
   reflect-metadata:
     specifier: ^0.1.13
     version: 0.1.13

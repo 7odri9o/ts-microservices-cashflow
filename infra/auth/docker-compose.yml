@@ -1,0 +1,28 @@
+version: '3.8'
+
+name: 'authentication'
+
+services:
+  postgres:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: auth.postgres
+    hostname: auth.postgres
+    restart: always
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    networks:
+      cashflow:
+        ipv4_address: ${IP_ADDRESS}
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+networks:
+  cashflow:
+    external: true
